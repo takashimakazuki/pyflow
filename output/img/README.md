@@ -1,0 +1,1 @@
+pngファイル(RGBのflow画像)が出力されるdiretory
