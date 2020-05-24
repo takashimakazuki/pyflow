@@ -25,14 +25,8 @@ def save_img(flow, flow_index):
 def get_img_path(dir_path, frame_index):
     return '%s/%s.jpg' % (dir_path, str(frame_index).rjust(8, '0'))
 
-images_path = '/home/k-takashima/workspace/research/dataset/flow_data/1_1_original'
-
-parser = argparse.ArgumentParser(
-    description='Demo for python wrapper of Coarse2Fine Optical Flow')
-parser.add_argument(
-    '-viz', dest='viz', action='store_true',
-    help='Visualize (i.e. save) output of flow.')
-args = parser.parse_args()
+# path to jpg image
+images_path = ''
 
 
 # Flow Options:
@@ -44,8 +38,7 @@ nInnerFPIterations = 1
 nSORIterations = 30
 colType = 0  # 0 or default:RGB, 1:GRAY (but pass gray image with shape (h,w,1))
 
-flow_all = np.ndarray(shape=(20, 480, 620, 2), dtype='float') # stacked flow data
-
+flow_ary = [] # flow data
 frame_index = 1 # image 00000001.jpg
 while os.path.isfile(get_img_path(images_path, frame_index+1)):
     im1 = np.array(Image.open(get_img_path(images_path, frame_index)))
@@ -62,11 +55,11 @@ while os.path.isfile(get_img_path(images_path, frame_index+1)):
     # flow data dx=u, dy=v
     flow = np.concatenate((u[..., None], v[..., None]), axis=2)
     save_img(flow, frame_index)
-    np.append(flow_all, flow)
+    flow_ary.append(flow)
     print('append flow %s-%s' % (str(frame_index).rjust(8, '0'), str(frame_index+1).rjust(8, '0')))
     frame_index += 1
 
 print('##### complete #####')
-np.save('output/outFlow.npy', flow_all)
-print('Flow shape: %s' % (flow_all.shape,))
+flow_ndarray = np.concatenate([arr[np.newaxis] for arr in flow_ary])
+np.save('output/outFlow.npy', flow_ndarray)
 
