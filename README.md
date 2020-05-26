@@ -10,4 +10,9 @@ Run the following steps to download, install and demo the library:
   python demo.py    # -viz option to visualize output
   ```
 
+```python
+# demo.py
+image_path = '' # 画像ファイルのディレクトリへのパスを書く
+```
+
 This wrapper code was developed as part of our [CVPR 2017 paper on Unsupervised Learning using unlabeled videos](http://cs.berkeley.edu/~pathak/unsupervised_video/). Github repository for our CVPR 17 paper is [here](https://github.com/pathak22/unsupervised-video).
