@@ -11,8 +11,9 @@ Run the following steps to download, install and demo the library:
   ```
 
 ```python
-# demo.py
-image_path = '' # 画像ファイルのディレクトリへのパスを書く
+# flow_numpy.npy
+data_path = '/home/k-takashima/workspace/research/dataset/data_c3d/'
+output_path = '/home/k-takashima/workspace/research/dataset/data_flow' 
 ```
 
 This wrapper code was developed as part of our [CVPR 2017 paper on Unsupervised Learning using unlabeled videos](http://cs.berkeley.edu/~pathak/unsupervised_video/). Github repository for our CVPR 17 paper is [here](https://github.com/pathak22/unsupervised-video).
